@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  terraform-plan:
+  terraform-apply:
     name: "Terraform Apply"
     runs-on: ubuntu-latest
     steps:
@@ -33,7 +33,7 @@ jobs:
 
       # Init pulls credentials from the .aws/credentials file by default
       - name: "Run - Terraform Init"
-        run: terraform init -input=false
+        run: terraform init -input=false -parallelism=5
 
       # Auto-approve prevents the requirement of human interaction
       - name: "Run - Terraform Apply"
